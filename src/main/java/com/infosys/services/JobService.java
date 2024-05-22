@@ -19,6 +19,10 @@ public class JobService{
 		return  repository.findAll();
 	}
 	
+	public List<Job> getJobsByRoleId(String roleId){
+		return repository.getJobsByRoleId(roleId);
+	}
+	
 	public Job addJob(Job job) {
 		return repository.save(job);
 	}

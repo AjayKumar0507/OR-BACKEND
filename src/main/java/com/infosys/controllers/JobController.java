@@ -24,6 +24,11 @@ public class JobController {
 		return service.getAllJobs();
 	}
 	
+	@GetMapping("/getJobsByRoleId/{roleId}")
+	public List<Job> getJobsByRoleId(@PathVariable String roleId){
+		return service.getJobsByRoleId(roleId);
+	}
+	
 	@PostMapping("/addJob")
 	public Job addJob(@RequestBody Job job) {
 		return service.addJob(job);
