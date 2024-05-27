@@ -12,7 +12,7 @@ import com.infosys.repositories.UserRepository;
 import com.infosys.repositories.RoleRepository;
 
 @Service
-public class UserService implements UserServiceInterface {
+public class UserService{
     
 	
     private final UserRepository userRepository;
@@ -24,7 +24,6 @@ public class UserService implements UserServiceInterface {
         this.userRepository = userRepository;
     }
 
-    @Override
 	public User getUserInfoByUserEmail(String email) {
 		Optional<User> optionalUser =  Optional.of(userRepository.getUserInfoByUserEmail(email));
 		return optionalUser.orElse(null);
@@ -34,12 +33,9 @@ public class UserService implements UserServiceInterface {
     	return userRepository.getUserByRoleId(roleId);
     }
 	
-    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
-    @Override
     public User addUser(User user) {
     	int count = 0;
     	Role role = new Role();
@@ -64,16 +60,17 @@ public class UserService implements UserServiceInterface {
         return userRepository.save(user);
     }
 
-    @Override
-    public void deleteUserById(int id) {
-        userRepository.deleteById(id);
+    public void deleteUserByRoleId(String roleId) {
+        User user = userRepository.getUserByRoleId(roleId);
+        if (user != null) {
+            userRepository.delete(user);
+        }
     }
 
-    @Override
-    public User updateUser(int id, User user) {
-        Optional<User> optionalExistingUser = userRepository.findById(id);
-        if (optionalExistingUser.isPresent()) {
-            User existingUser = optionalExistingUser.get();
+    public User updateUser(String roleId, User user) {
+        User existingUser = userRepository.getUserByRoleId(roleId);
+        if (existingUser != null) {
+            
             existingUser.setUserName(user.getUserName());
             existingUser.setUserEmail(user.getUserEmail());
             existingUser.setPassword(user.getPassword());

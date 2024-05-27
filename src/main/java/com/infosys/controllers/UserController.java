@@ -32,9 +32,9 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @DeleteMapping("/deleteUser/{id}")
-    public void deleteUserById(@PathVariable int id) {
-        userService.deleteUserById(id);
+    @DeleteMapping("/deleteUserByRoleId/{roleId}")
+    public void deleteUserByRoleId(@PathVariable String roleId) {
+        userService.deleteUserByRoleId(roleId);
     }
 
     @GetMapping("/getUserByRoleId/{id}")
@@ -42,14 +42,10 @@ public class UserController {
     	return userService.getUserInfoByRoleId(id);
     }
     
-    
-    @GetMapping("/getUserByEmail/{id}")
-    public User getUserByUserEmail(@PathVariable String id) {
-    	/*
-    	User user = userService.getUserInfoById(id);
-    	System.out.println(user.toString()+user.getRole().getRoleId());
-    	*/
-    	return userService.getUserInfoByUserEmail(id);
-    	
+    @PostMapping("/updateUserByRoleId")
+    public User updateUser(@RequestBody User user) {
+    	return userService.updateUser(user.role.getRoleId(), user);
     }
+    
+    
 }

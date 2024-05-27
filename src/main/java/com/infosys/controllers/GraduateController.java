@@ -41,6 +41,11 @@ public class GraduateController {
         graduateService.addGraduate(graduate);
     }
 
+    @PostMapping("/updateGraduate")
+    public Graduate updateGraduate(@RequestBody Graduate graduate) {
+    	return graduateService.updateGraduate(graduate.getRole().getRoleId(), graduate);
+    }
+    
     @DeleteMapping("/deleteGraduate")
     public void deleteGraduate(@RequestBody Graduate graduate) {
         graduateService.deleteGraduate(graduate);

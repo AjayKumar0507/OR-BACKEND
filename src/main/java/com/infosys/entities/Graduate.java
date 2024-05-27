@@ -26,7 +26,7 @@ public class Graduate{
 	private String skills;
 	private String project;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER )
 	private Role role;
 	
 	

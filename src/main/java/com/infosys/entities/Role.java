@@ -24,37 +24,38 @@ public class Role {
 	private String roleTitle;
 	private String roleDesc;
 	
-	@OneToOne(mappedBy="role")
+	@OneToOne(mappedBy="role", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private User user;
 	
 	@OneToMany(mappedBy = "roles", cascade = CascadeType.ALL)
     private List<Job> jobs = new ArrayList<>();
 	
-	
-	public Role() {
-		super();
-	}
+	@OneToMany(mappedBy = "rolea", cascade = CascadeType.ALL)
+    private List<Appointments> appointments = new ArrayList<>();
 
-
-	public String getRoleId() {
-		return roleId;
-	}
-
-
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
-
-
-	public Role(String roleId, String roleTitle, String roleDesc, User user) {
+	public Role(String roleId, String roleTitle, String roleDesc, User user, List<Job> jobs,
+			List<Appointments> appointments) {
 		super();
 		this.roleId = roleId;
 		this.roleTitle = roleTitle;
 		this.roleDesc = roleDesc;
 		this.user = user;
+		this.jobs = jobs;
+		this.appointments = appointments;
 	}
 
+	public Role() {
+		super();
+	}
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
 
 	public String getRoleTitle() {
 		return roleTitle;
@@ -80,11 +81,30 @@ public class Role {
 		this.user = user;
 	}
 
+	public List<Job> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
+	}
+
+	public List<Appointments> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(List<Appointments> appointments) {
+		this.appointments = appointments;
+	}
+
 	@Override
 	public String toString() {
 		return "Role [roleId=" + roleId + ", roleTitle=" + roleTitle + ", roleDesc=" + roleDesc + ", user=" + user
-				+ "]";
+				+ ", jobs=" + jobs + ", appointments=" + appointments + ", getRoleId()=" + getRoleId()
+				+ ", getRoleTitle()=" + getRoleTitle() + ", getRoleDesc()=" + getRoleDesc() + ", getUser()=" + getUser()
+				+ ", getJobs()=" + getJobs() + ", getAppointments()=" + getAppointments() + "]";
 	}
-
+	
+	
 	
 }

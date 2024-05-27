@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.infosys.entities.Employer;
+import com.infosys.entities.User;
 import com.infosys.repositories.EmployerRepository;
 
 @Service
@@ -32,4 +33,21 @@ public class EmployerService {
     public void deleteEmployer(Employer employer) {
         employerRepository.delete(employer);
     }
+    
+    public Employer updateEmployer(String id, Employer employer) {
+        Employer existingEmployer = employerRepository.getByRoleId(id);
+        if (existingEmployer != null) {
+            
+            existingEmployer.setCompany(employer.getCompany());
+            existingEmployer.setCompanyAddress(employer.getCompanyAddress());
+            existingEmployer.setSector(employer.getSector());
+            existingEmployer.setCompanySize(employer.getCompanySize());
+            existingEmployer.setAddress(employer.getAddress());
+            
+            return employerRepository.save(existingEmployer);
+        } else {
+            return null;
+        }
+    }
+    
 }

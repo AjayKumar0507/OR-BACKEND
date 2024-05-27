@@ -7,8 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.infosys.entities.Employer;
 import com.infosys.entities.Role;
 import com.infosys.entities.User;
+import com.infosys.repositories.EmployerRepository;
 import com.infosys.repositories.RoleRepository;
 import com.infosys.repositories.UserRepository;
 
@@ -20,6 +22,9 @@ public class RoleService{
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	EmployerRepository employerRepository;
 	
 	public List<Role> getAllRoles() {
 		/*String jpql = "SELECT r FROM Role r LEFT JOIN FETCH r.emp";
@@ -34,12 +39,26 @@ public class RoleService{
 		return repository.save(role);
 	}
 	
-	public void deleteRoleById(String id) {
-		User user = repository.findById(id).get().getUser();
-		System.out.println(user.toString());
-		user.setRole(null);
-		userRepository.save(user);
-		repository.deleteById(id);
+	public void deleteRoleById(String roleId) {
+	    Role role = repository.findById(roleId).orElse(null);
+	    
+	    if (role != null) {
+	        User user = role.getUser();
+	        
+	        if (user != null) {
+	            user.setRole(null); 
+	            userRepository.delete(user);
+	        }
+	        
+	        if(role.getRoleTitle()=="employer") {
+	        	Employer employer = employerRepository.getByRoleId(role.getRoleId());
+	        	employerRepository.delete(employer);
+	        }
+	        
+	        repository.delete(role); // Delete the role
+	    } else {
+	        System.out.println("Role with id " + roleId + " not found.");
+	    }
 	}
 
 	public Role getRoleInfoById(String roleId) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.infosys.entities.Employer;
 import com.infosys.entities.Graduate;
 import com.infosys.repositories.GraduateRepository;
 
@@ -31,5 +32,22 @@ public class GraduateService  {
         graduateRepository.delete(graduate);
     }
 
+    public Graduate updateGraduate(String id, Graduate graduate) {
+        Graduate existingGraduate = graduateRepository.getByRoleId(id);
+        if (existingGraduate != null) {
+            
+            existingGraduate.setCollegeName(graduate.getCollegeName());
+            existingGraduate.setCollegeAddress(graduate.getCollegeAddress());
+            existingGraduate.setGender(graduate.getGender());
+            existingGraduate.setDateOfBirth(graduate.getDateOfBirth());
+            existingGraduate.setAddress(graduate.getAddress());
+            existingGraduate.setSkills(graduate.getSkills());
+            existingGraduate.setProject(graduate.getProject());
+            
+            return graduateRepository.save(existingGraduate);
+        } else {
+            return null;
+        }
+    }
 	
 }
