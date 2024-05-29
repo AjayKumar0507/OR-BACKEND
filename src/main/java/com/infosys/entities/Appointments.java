@@ -17,6 +17,7 @@ public class Appointments {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private int jobId;
 	private String fullName;
 	private String email;
 	private String phoneNo;
@@ -31,10 +32,17 @@ public class Appointments {
     @JoinColumn(name = "roleId")
     private Role rolea;
 
-	public Appointments(int id, String fullName, String email, String phoneNo, String college, String collegeAddress,
-			String yearOfPassing, String percentage, String skills, String project, Role rolea) {
+	
+	
+	public Appointments() {
+		super();
+	}
+
+	public Appointments(int id, int jobId, String fullName, String email, String phoneNo, String college,
+			String collegeAddress, String yearOfPassing, String percentage, String skills, String project, Role rolea) {
 		super();
 		this.id = id;
+		this.jobId = jobId;
 		this.fullName = fullName;
 		this.email = email;
 		this.phoneNo = phoneNo;
@@ -47,16 +55,20 @@ public class Appointments {
 		this.rolea = rolea;
 	}
 
-	public Appointments() {
-		super();
-	}
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(int jobId) {
+		this.jobId = jobId;
 	}
 
 	public String getFullName() {
@@ -141,11 +153,17 @@ public class Appointments {
 
 	@Override
 	public String toString() {
-		return "Appointments [id=" + id + ", fullName=" + fullName + ", email=" + email + ", phoneNo=" + phoneNo
-				+ ", college=" + college + ", collegeAddress=" + collegeAddress + ", yearOfPassing=" + yearOfPassing
-				+ ", percentage=" + percentage + ", skills=" + skills + ", project=" + project + ", rolea=" + rolea
+		return "Appointments [id=" + id + ", jobId=" + jobId + ", fullName=" + fullName + ", email=" + email
+				+ ", phoneNo=" + phoneNo + ", college=" + college + ", collegeAddress=" + collegeAddress
+				+ ", yearOfPassing=" + yearOfPassing + ", percentage=" + percentage + ", skills=" + skills
+				+ ", project=" + project + ", rolea=" + rolea + ", getId()=" + getId() + ", getJobId()=" + getJobId()
+				+ ", getFullName()=" + getFullName() + ", getEmail()=" + getEmail() + ", getPhoneNo()=" + getPhoneNo()
+				+ ", getCollege()=" + getCollege() + ", getCollegeAddress()=" + getCollegeAddress()
+				+ ", getYearOfPassing()=" + getYearOfPassing() + ", getPercentage()=" + getPercentage()
+				+ ", getSkills()=" + getSkills() + ", getProject()=" + getProject() + ", getRolea()=" + getRolea()
 				+ "]";
 	}
 	
+		
 	
 }

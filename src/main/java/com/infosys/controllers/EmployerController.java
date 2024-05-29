@@ -39,14 +39,16 @@ public class EmployerController {
         employerService.addEmployer(employer);
     }
     
-    @PostMapping("/updateEmployer")
+    @PostMapping("/updateEmployerByRoleId")
     public Employer updateEmployer(@RequestBody Employer employer) {
     	return employerService.updateEmployer(employer.getRole().getRoleId(), employer);
     }
 
+    /*
     @DeleteMapping("/deleteEmployer")
     public void deleteEmployer(@RequestBody Employer employer) {
         employerService.deleteEmployer(employer);
     }
+    */
     
 }

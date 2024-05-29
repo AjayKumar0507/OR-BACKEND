@@ -36,6 +36,8 @@ public class UserController {
     public void deleteUserByRoleId(@PathVariable String roleId) {
         userService.deleteUserByRoleId(roleId);
     }
+    
+    
 
     @GetMapping("/getUserByRoleId/{id}")
     public User getUserInfoByRoleId(@PathVariable String id) {

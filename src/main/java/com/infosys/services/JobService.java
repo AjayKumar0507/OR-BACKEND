@@ -26,12 +26,8 @@ public class JobService{
 	public Job addJob(Job job) {
 		return repository.save(job);
 	}
-	/*
 	
-	public List<Job> getJobsByEmpId(String id){
-		return repository.getJobsByEmpId(id);
-	}
-	*/
+	
 
 	public Job updateJob(int id , Job job) {
 		Optional<Job> optionalExistingUser = repository.findById(id);

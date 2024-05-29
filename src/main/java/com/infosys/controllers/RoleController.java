@@ -33,11 +33,12 @@ public class RoleController {
 	public Role addRole(@RequestBody Role role) {
 		return service.addRole(role);
 	}
-	
+	/*
 	@DeleteMapping("/deleteRole/{id}")
 	public void deleteRoleById(@PathVariable String id) {
 		service.deleteRoleById(id);
 	}
+	*/
 	
 	@GetMapping("/getRoleInfoById/{id}")
 	public Role getRoleInfoById(@PathVariable String id) {

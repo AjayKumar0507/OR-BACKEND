@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import com.infosys.entities.User;
 import com.infosys.entities.Role;
 import com.infosys.repositories.UserRepository;
+import com.infosys.repositories.AppointmentsRepository;
+import com.infosys.repositories.EmployerRepository;
+import com.infosys.repositories.GraduateRepository;
+import com.infosys.repositories.JobRepository;
 import com.infosys.repositories.RoleRepository;
 
 @Service
@@ -19,6 +23,21 @@ public class UserService{
     
     @Autowired
     RoleRepository roleRepository;
+    
+    @Autowired
+	EmployerRepository employerRepository;
+	
+	@Autowired
+	GraduateRepository graduateRepository;
+	
+	@Autowired
+	JobRepository jobRepository;
+	
+	@Autowired
+	AppointmentsRepository appointmentsRepository;
+	
+	@Autowired
+	GraduateService graduateService;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -61,10 +80,20 @@ public class UserService{
     }
 
     public void deleteUserByRoleId(String roleId) {
-        User user = userRepository.getUserByRoleId(roleId);
-        if (user != null) {
-            userRepository.delete(user);
-        }
+    	Role role = roleRepository.findById(roleId).orElse(null);
+	    
+	    if(role.getRoleId().charAt(0)=='g') {
+	    	appointmentsRepository.deleteAppointmentsByRoleId(roleId);
+	    	graduateService.deleteGraduate(graduateRepository.getByRoleId(roleId));
+	    	userRepository.deleteUserByRoleId(roleId);
+	    }
+	    else {
+	    	System.out.print("hello");
+	    	jobRepository.deleteJobsByRoleId(roleId);
+	    	employerRepository.deleteEmployerByRoleId(roleId);
+	    	userRepository.deleteUserByRoleId(roleId);
+	    	
+	    }
     }
 
     public User updateUser(String roleId, User user) {

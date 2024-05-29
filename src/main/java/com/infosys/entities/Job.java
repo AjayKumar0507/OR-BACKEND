@@ -2,6 +2,7 @@ package com.infosys.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,8 +25,7 @@ public class Job {
 	private String jobLocation;
 	private String jobDescription;
 	private String jobVacancy;
-	
-	@JsonIgnore
+
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
     private Role roles;

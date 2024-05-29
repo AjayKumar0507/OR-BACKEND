@@ -28,10 +28,19 @@ public class GraduateService  {
     public void addGraduate(Graduate graduate) {
         graduateRepository.save(graduate);
     }
+    
+    
+    
+    
+    
     public void deleteGraduate(Graduate graduate) {
         graduateRepository.delete(graduate);
     }
 
+    
+    
+    
+    
     public Graduate updateGraduate(String id, Graduate graduate) {
         Graduate existingGraduate = graduateRepository.getByRoleId(id);
         if (existingGraduate != null) {
@@ -49,5 +58,9 @@ public class GraduateService  {
             return null;
         }
     }
-	
+    /*
+    public void deleteGraduateByRoleId(String roleId) {
+    	graduateRepository.deleteGraduateByRoleId(roleId);
+    }
+	*/
 }

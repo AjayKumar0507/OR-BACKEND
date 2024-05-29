@@ -30,8 +30,8 @@ public class EmployerService {
     	return employerRepository.getByRoleId(id);
     }
     
-    public void deleteEmployer(Employer employer) {
-        employerRepository.delete(employer);
+    public void deleteEmployerByRoleId(String roleId) {
+    	employerRepository.deleteEmployerByRoleId(roleId);
     }
     
     public Employer updateEmployer(String id, Employer employer) {

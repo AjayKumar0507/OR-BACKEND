@@ -12,11 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Transient;
-//import jakarta.persistence.Inheritance;
-//import jakarta.persistence.InheritanceType;
-
-
-//@Inheritance(strategy = InheritanceType.JOINED)
 
 @Entity
 public class User {

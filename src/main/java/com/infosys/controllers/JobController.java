@@ -38,13 +38,7 @@ public class JobController {
 	public Job updateJob(@RequestBody  Job job) {
 		return service.updateJob(job.getJobId(),job);
 	}
-	/*
 	
-	@GetMapping("/getJobsByEmpId/{id}")
-	public List<Job> getJobsByEmpId(String id){
-		return service.getJobsByEmpId(id);
-	}
-	*/
 	
 	@PostMapping("/deleteJob/{id}")
 	public void deleteJobById(@PathVariable int id) {

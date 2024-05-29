@@ -28,10 +28,12 @@ public class Role {
 	@JsonIgnore
 	private User user;
 	
-	@OneToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "roles")
     private List<Job> jobs = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "rolea", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@OneToMany(mappedBy = "rolea")
     private List<Appointments> appointments = new ArrayList<>();
 
 	public Role(String roleId, String roleTitle, String roleDesc, User user, List<Job> jobs,
