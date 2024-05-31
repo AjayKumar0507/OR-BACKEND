@@ -9,7 +9,7 @@ import com.infosys.entities.Graduate;
 import com.infosys.repositories.GraduateRepository;
 
 @Service
-public class GraduateService  {
+public class GraduateService implements GraduateServiceInterface  {
     
     private final GraduateRepository graduateRepository;
 
@@ -29,17 +29,10 @@ public class GraduateService  {
         graduateRepository.save(graduate);
     }
     
-    
-    
-    
-    
     public void deleteGraduate(Graduate graduate) {
         graduateRepository.delete(graduate);
     }
 
-    
-    
-    
     
     public Graduate updateGraduate(String id, Graduate graduate) {
         Graduate existingGraduate = graduateRepository.getByRoleId(id);

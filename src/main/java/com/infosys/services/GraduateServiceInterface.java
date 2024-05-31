@@ -12,7 +12,7 @@ public interface GraduateServiceInterface {
 
 	void deleteGraduate(Graduate graduate);
 
-	Graduate getGraduateById(int id);
+	public Graduate updateGraduate(String id, Graduate graduate);
 
 	Graduate getGraduateById(String id);
 

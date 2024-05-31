@@ -6,14 +6,13 @@ import com.infosys.entities.User;
 
 public interface UserServiceInterface {
 
-	User updateUser(int id, User user);
+	public User updateUser(String roleId, User user);
 
 	List<User> getAllUsers();
 
 	User addUser(User user);
 
-	void deleteUserById(int id);
+	public void deleteUserByRoleId(String roleId);
 
-	User getUserInfoByUserEmail(String email);
-
+    public User getUserInfoByRoleId(String roleId);
 }

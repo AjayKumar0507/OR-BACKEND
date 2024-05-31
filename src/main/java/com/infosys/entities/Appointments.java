@@ -1,6 +1,8 @@
 package com.infosys.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.io.File;
+import java.util.Arrays;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,7 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Appointments {
@@ -28,6 +32,10 @@ public class Appointments {
 	private String skills;
 	private String project;
 	
+	@Lob
+	private byte[] resume;
+
+
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
     private Role rolea;
@@ -39,7 +47,8 @@ public class Appointments {
 	}
 
 	public Appointments(int id, int jobId, String fullName, String email, String phoneNo, String college,
-			String collegeAddress, String yearOfPassing, String percentage, String skills, String project, Role rolea) {
+			String collegeAddress, String yearOfPassing, String percentage, String skills, String project,
+			byte[] resume, Role rolea) {
 		super();
 		this.id = id;
 		this.jobId = jobId;
@@ -52,9 +61,12 @@ public class Appointments {
 		this.percentage = percentage;
 		this.skills = skills;
 		this.project = project;
+		this.resume = resume;
 		this.rolea = rolea;
 	}
-
+	
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -143,6 +155,14 @@ public class Appointments {
 		this.project = project;
 	}
 
+	public byte[] getResume() {
+		return resume;
+	}
+
+	public void setResume(byte[] resume) {
+		this.resume = resume;
+	}
+
 	public Role getRolea() {
 		return rolea;
 	}
@@ -156,13 +176,9 @@ public class Appointments {
 		return "Appointments [id=" + id + ", jobId=" + jobId + ", fullName=" + fullName + ", email=" + email
 				+ ", phoneNo=" + phoneNo + ", college=" + college + ", collegeAddress=" + collegeAddress
 				+ ", yearOfPassing=" + yearOfPassing + ", percentage=" + percentage + ", skills=" + skills
-				+ ", project=" + project + ", rolea=" + rolea + ", getId()=" + getId() + ", getJobId()=" + getJobId()
-				+ ", getFullName()=" + getFullName() + ", getEmail()=" + getEmail() + ", getPhoneNo()=" + getPhoneNo()
-				+ ", getCollege()=" + getCollege() + ", getCollegeAddress()=" + getCollegeAddress()
-				+ ", getYearOfPassing()=" + getYearOfPassing() + ", getPercentage()=" + getPercentage()
-				+ ", getSkills()=" + getSkills() + ", getProject()=" + getProject() + ", getRolea()=" + getRolea()
-				+ "]";
+				+ ", project=" + project + ", resume=" + Arrays.toString(resume) + ", rolea=" + rolea + "]";
 	}
+	
 	
 		
 	

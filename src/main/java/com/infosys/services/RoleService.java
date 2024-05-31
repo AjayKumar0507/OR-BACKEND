@@ -18,7 +18,7 @@ import com.infosys.repositories.RoleRepository;
 import com.infosys.repositories.UserRepository;
 
 @Service
-public class RoleService{
+public class RoleService implements RoleServiceInterface{
 	
 	@Autowired
 	RoleRepository repository;

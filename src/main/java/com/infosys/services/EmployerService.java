@@ -9,7 +9,7 @@ import com.infosys.entities.User;
 import com.infosys.repositories.EmployerRepository;
 
 @Service
-public class EmployerService {
+public class EmployerService  implements EmployerServiceInterface{
     
     private final EmployerRepository employerRepository;
 

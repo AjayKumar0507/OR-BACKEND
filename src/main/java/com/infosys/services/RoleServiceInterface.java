@@ -10,9 +10,7 @@ public interface RoleServiceInterface {
 
 	Role addRole(Role role);
 
-	Role getRoleInfoById(int id);
+	public Role getRoleInfoById(String roleId) ;
 
-
-	void deleteRoleById(int id);
 
 }

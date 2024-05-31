@@ -16,7 +16,7 @@ import com.infosys.repositories.JobRepository;
 import com.infosys.repositories.RoleRepository;
 
 @Service
-public class UserService{
+public class UserService implements UserServiceInterface{
     
 	
     private final UserRepository userRepository;
@@ -43,10 +43,6 @@ public class UserService{
         this.userRepository = userRepository;
     }
 
-	public User getUserInfoByUserEmail(String email) {
-		Optional<User> optionalUser =  Optional.of(userRepository.getUserInfoByUserEmail(email));
-		return optionalUser.orElse(null);
-	}
 	
     public User getUserInfoByRoleId(String roleId) {
     	return userRepository.getUserByRoleId(roleId);

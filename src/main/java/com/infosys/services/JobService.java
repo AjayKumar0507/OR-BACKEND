@@ -10,7 +10,7 @@ import com.infosys.entities.Job;
 import com.infosys.repositories.JobRepository;
 
 @Service
-public class JobService{
+public class JobService implements JobServiceInterface{
 
 	@Autowired
 	private JobRepository repository;
@@ -36,10 +36,13 @@ public class JobService{
             Job existingUser = optionalExistingUser.get();
             existingUser.setJobId(job.getJobId());
             existingUser.setJobName(job.getJobName());
+            existingUser.setCompany(job.getCompany());
+            existingUser.setJobLocation(job.getJobLocation());
             existingUser.setJobSalary(job.getJobSalary());
             existingUser.setJobType(job.getJobType());
             existingUser.setJobDescription(job.getJobDescription());
             existingUser.setJobVacancy(job.getJobVacancy());
+            existingUser.setRoles(job.getRoles());
             
             return repository.save(existingUser);
         } else {

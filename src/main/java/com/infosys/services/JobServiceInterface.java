@@ -16,6 +16,8 @@ public interface JobServiceInterface {
 	void deleteJobById(int id);
 
 	Job searchJobById(int id);
+	
+	public List<Job> getJobsByRoleId(String roleId);
 
 
 }

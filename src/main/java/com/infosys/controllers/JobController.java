@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,13 +35,14 @@ public class JobController {
 		return service.addJob(job);
 	}
 	
-	@PostMapping("/updateJob")
-	public Job updateJob(@RequestBody  Job job) {
+	@PostMapping("/updateJob/{jobId}")
+	public Job updateJob(@RequestBody  Job job , @PathVariable int jobId) {
+		job.setJobId(jobId);
 		return service.updateJob(job.getJobId(),job);
 	}
 	
 	
-	@PostMapping("/deleteJob/{id}")
+	@DeleteMapping("/deleteJob/{id}")
 	public void deleteJobById(@PathVariable int id) {
 		service.deleteJobById(id);
 	}

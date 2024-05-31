@@ -10,6 +10,10 @@ public interface EmployerServiceInterface {
 
 	void addEmployer(Employer employer);
 
-	void deleteEmployer(Employer employer);
+	public void deleteEmployerByRoleId(String roleId);
+	
+	public Employer updateEmployer(String id, Employer employer);
+	
+	public Employer getEmployerById(String id);
 
 }
