@@ -4,6 +4,7 @@ package com.infosys.entities;
 import java.io.File;
 import java.util.Arrays;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +34,7 @@ public class Appointments {
 	private String project;
 	
 	@Lob
+	@Column(name="resume" , length=1000000000)
 	private byte[] resume;
 
 

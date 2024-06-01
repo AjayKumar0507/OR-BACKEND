@@ -24,5 +24,11 @@ public interface AppointmentsRepository extends JpaRepository<Appointments, Inte
 	
 	@Query("SELECT a.jobId FROM Appointments a WHERE a.rolea.roleId = :roleId")
 	public List<Integer> getAppointmentsByRoleId(String roleId);
-	
+
+
+	Appointments getById(int id);
+
+	@Query("SELECT a FROM Appointments a WHERE a.rolea.roleId = :roleId")
+	List<Appointments> findAppointmentsByRoleId(String roleId);
+
 }

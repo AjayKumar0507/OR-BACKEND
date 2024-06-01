@@ -50,23 +50,21 @@ public class AppointmentsService implements AppointmentsServiceInterface{
 	}*/
 	
 	public Appointments addAppointment(Appointments appointment) {
-		// , MultipartFile file
-	    //  Appointments savedAppointment 
 	    return appointmentsRepository.save(appointment);
-	     // this.updateAppointment(savedAppointment);
-	    // , file
 	}
 
 	public void updateAppointment(int jobId, MultipartFile file) {
 	    Optional<Appointments> demo = appointmentsRepository.findById(jobId);
 	    System.out.println("in service layer");
 	    if (demo.isPresent()) {
+	    	System.out.println("outside try");
 	        try {
 	            demo.get().setResume(file.getBytes());
 	            System.out.println("inside try block");
 	            appointmentsRepository.save(demo.get());
 	        } catch (IOException e) {
 	            // Handle the exception
+	        	System.out.println("esception");
 	        }
 	    } else {
 	        // Handle the case where the appointment is not found
@@ -79,9 +77,18 @@ public class AppointmentsService implements AppointmentsServiceInterface{
 		return appointmentsRepository.findAll();
 	}
 	
+	public List<Appointments> getAppointmentsByRoleId(String roleId){
+		return appointmentsRepository.findAppointmentsByRoleId(roleId);
+	}
+	
 	public List<Job> getJobsAppliedByRoleId(String roleId){
 		List<Integer> jobIds =  appointmentsRepository.getAppointmentsByRoleId(roleId);
 		
 		return jobRepository.findJobsByIds(jobIds);
+	}
+	
+	public byte[] getResumeByAppointmentId(int id) {
+		Appointments appointment = appointmentsRepository.getById(id);
+		return appointment.getResume();
 	}
 }

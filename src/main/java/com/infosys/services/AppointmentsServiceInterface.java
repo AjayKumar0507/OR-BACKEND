@@ -15,4 +15,8 @@ public interface AppointmentsServiceInterface {
 	public List<Appointments> getAllAppointments();
 	
 	public List<Job> getJobsAppliedByRoleId(String roleId);
+	
+	public byte[] getResumeByAppointmentId(int id);
+	
+	public List<Appointments> getAppointmentsByRoleId(String roleId);
 }

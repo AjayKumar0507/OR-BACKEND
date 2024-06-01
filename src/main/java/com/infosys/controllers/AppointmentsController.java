@@ -35,8 +35,9 @@ public class AppointmentsController {
 	
 	@PostMapping("/updateAppointment/{jobId}")
 	public void updateAppointment(
-			@RequestPart("file") MultipartFile file , 
-			@PathVariable("jobId") int jobId
+			@PathVariable("jobId") int jobId,
+			@RequestParam("file") MultipartFile file  
+			
 			) {
 		System.out.println("in controller");
 		appointmentsService.updateAppointment(jobId, file);
@@ -50,6 +51,16 @@ public class AppointmentsController {
 	@GetMapping("/getJobsAppliedByRoleId/{roleId}")
 	public List<Job> getJobsAppliedByRoleId(@PathVariable String roleId){
 		return appointmentsService.getJobsAppliedByRoleId(roleId);
+	}
+	
+	@GetMapping("/getResumeByAppointmentId/{id}")
+	public byte[] getResumeByAppointmentId(@PathVariable int id) {
+		return appointmentsService.getResumeByAppointmentId(id);
+	}
+	
+	@GetMapping("/getAppointmentsByRoleId/{roleId}")
+	public List<Appointments> getAppointmentsByRoleId(@PathVariable String roleId){
+		return appointmentsService.getAppointmentsByRoleId(roleId);
 	}
 
 }
