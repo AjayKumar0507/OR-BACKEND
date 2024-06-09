@@ -22,39 +22,15 @@ public class AppointmentsService implements AppointmentsServiceInterface{
 	
 	@Autowired
 	JobRepository jobRepository;
-	/*
-	public Appointments addAppointment(int jobId, String fullName, String email, String phoneNo,
-            String college, String collegeAddress, String yearOfPassing,
-            String percentage, String skills, String project,
-            MultipartFile file, Role role) throws IOException {
 
-			byte[] fileBytes = file.getBytes(); // Convert MultipartFile to byte array
-			Appointments appointment = Appointments.builder()
-			.jobId(jobId)
-			.fullName(fullName)
-			.email(email)
-			.phoneNo(phoneNo)
-			.college(college)
-			.collegeAddress(collegeAddress)
-			.yearOfPassing(yearOfPassing)
-			.percentage(percentage)
-			.skills(skills)
-			.project(project)
-			.resume(fileBytes)
-			.rolea(role)
-			.build();
-			
-			
-	
-			return appointmentsRepository.save(appointment);
-	}*/
-	
+	@Override
 	public Appointments addAppointment(Appointments appointment) {
 	    return appointmentsRepository.save(appointment);
 	}
 
-	public void updateAppointment(int jobId, MultipartFile file) {
-	    Optional<Appointments> demo = appointmentsRepository.findById(jobId);
+	@Override
+	public void updateAppointment(int id, MultipartFile file) {
+	    Optional<Appointments> demo = appointmentsRepository.findById(id);
 	    System.out.println("in service layer");
 	    if (demo.isPresent()) {
 	    	System.out.println("outside try");
@@ -71,24 +47,49 @@ public class AppointmentsService implements AppointmentsServiceInterface{
 	    }
 	}
 
-
+	public void acceptAppointment(Appointments appointment) {
+		appointmentsRepository.save(appointment);
+	}
 	
+	public void deleteAppointment(int id) {
+		appointmentsRepository.deleteById(id);
+	}
+
+	@Override
 	public List<Appointments> getAllAppointments(){
 		return appointmentsRepository.findAll();
 	}
 	
+	@Override
 	public List<Appointments> getAppointmentsByRoleId(String roleId){
 		return appointmentsRepository.findAppointmentsByRoleId(roleId);
 	}
 	
+	@Override
 	public List<Job> getJobsAppliedByRoleId(String roleId){
 		List<Integer> jobIds =  appointmentsRepository.getAppointmentsByRoleId(roleId);
 		
 		return jobRepository.findJobsByIds(jobIds);
 	}
 	
+	@Override
 	public byte[] getResumeByAppointmentId(int id) {
 		Appointments appointment = appointmentsRepository.getById(id);
 		return appointment.getResume();
+	}
+
+	@Override
+	public List<Appointments> findPendingAppointmentsById(String roleId) {
+		return appointmentsRepository.findPendingAppointmentsById(roleId);
+	}
+
+	@Override
+	public List<Appointments> findAcceptedAppointmentsById(String roleId) {
+		return appointmentsRepository.findAcceptedAppointmentsById(roleId);
+	}
+
+	@Override
+	public List<Appointments> findRejectedAppointmentsById(String roleId) {
+		return appointmentsRepository.findRejectedAppointmentsById(roleId);
 	}
 }

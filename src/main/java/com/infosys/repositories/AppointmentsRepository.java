@@ -31,4 +31,15 @@ public interface AppointmentsRepository extends JpaRepository<Appointments, Inte
 	@Query("SELECT a FROM Appointments a WHERE a.rolea.roleId = :roleId")
 	List<Appointments> findAppointmentsByRoleId(String roleId);
 
+	@Query("SELECT a FROM Appointments a WHERE a.employerId = :roleId and a.status =  'accepted'")
+	List<Appointments> findAcceptedAppointmentsById(String roleId);
+	
+
+	@Query("SELECT a FROM Appointments a WHERE a.employerId = :roleId and a.status =  'rejected' ")
+	List<Appointments> findRejectedAppointmentsById(String roleId);
+	
+
+	@Query("SELECT a FROM Appointments a WHERE a.employerId = :roleId and a.status = 'pending'")
+	List<Appointments> findPendingAppointmentsById(String roleId);
+	
 }

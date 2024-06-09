@@ -32,6 +32,8 @@ public class Appointments {
 	private String percentage;
 	private String skills;
 	private String project;
+	private String employerId;
+	private String status;
 	
 	@Lob
 	@Column(name="resume" , length=1000000000)
@@ -47,10 +49,12 @@ public class Appointments {
 	public Appointments() {
 		super();
 	}
-
+	
+	
+	
 	public Appointments(int id, int jobId, String fullName, String email, String phoneNo, String college,
 			String collegeAddress, String yearOfPassing, String percentage, String skills, String project,
-			byte[] resume, Role rolea) {
+			String employerId, String status, byte[] resume, Role rolea) {
 		super();
 		this.id = id;
 		this.jobId = jobId;
@@ -63,12 +67,38 @@ public class Appointments {
 		this.percentage = percentage;
 		this.skills = skills;
 		this.project = project;
+		this.employerId = employerId;
+		this.status = status;
 		this.resume = resume;
 		this.rolea = rolea;
 	}
-	
-	
-	
+
+
+
+	public String getEmployerId() {
+		return employerId;
+	}
+
+
+
+	public void setEmployerId(String employerId) {
+		this.employerId = employerId;
+	}
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

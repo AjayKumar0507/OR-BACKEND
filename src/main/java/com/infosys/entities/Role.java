@@ -36,8 +36,12 @@ public class Role {
 	@OneToMany(mappedBy = "rolea")
     private List<Appointments> appointments = new ArrayList<>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "from")
+    private List<Messages> messages = new ArrayList<>();
+
 	public Role(String roleId, String roleTitle, String roleDesc, User user, List<Job> jobs,
-			List<Appointments> appointments) {
+			List<Appointments> appointments, List<Messages> messages) {
 		super();
 		this.roleId = roleId;
 		this.roleTitle = roleTitle;
@@ -45,6 +49,17 @@ public class Role {
 		this.user = user;
 		this.jobs = jobs;
 		this.appointments = appointments;
+		this.messages = messages;
+	}
+	
+	
+
+	public List<Messages> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Messages> messages) {
+		this.messages = messages;
 	}
 
 	public Role() {

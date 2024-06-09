@@ -19,4 +19,11 @@ public interface AppointmentsServiceInterface {
 	public byte[] getResumeByAppointmentId(int id);
 	
 	public List<Appointments> getAppointmentsByRoleId(String roleId);
+	
+	public List<Appointments> findPendingAppointmentsById(String roleId);
+	
+	public List<Appointments> findAcceptedAppointmentsById(String roleId);
+	
+	public List<Appointments> findRejectedAppointmentsById(String roleId);
+	
 }
